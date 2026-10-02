@@ -1,1 +1,57 @@
-Hello!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kathabi: Get Started!</title>
+    <style>
+        .box {
+            background-color: #CBB9A3;
+            color: #4B5136;
+            font-family: ;
+            border: 3px solid #6B4426; 
+            border-radius: 20px;
+            padding: 20px;
+            margin: 10px;
+            width: 900px;
+            height: auto;
+        }
+        .div {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        li {
+          list-style: none; display: inline-block;
+        }
+
+        li a {
+          color: #4B5136;
+          font-family: ;
+          margin-right: 10px;
+        }
+    </style>
+</head>
+    
+<body style="background: #E8DCC5;">
+<nav class = "box">
+  <div class = "div">
+    <h2>Kathabi</h2>
+    <ul>
+      <li><a href = "Home">Home</a></li>
+      <li><a href = "Contacts">Contacts</a></li>
+      <li><a href = "About Us">About Us</a></li>
+      <li><a href = "Products">Products</a></li>
+    </ul>
+  </div>
+</nav>
+<nav class = "box">
+  <h2 style = "text-align: left;">Looking for something that gives a taste of Filipino <br> fashion, while being eco-friendly?</h1>
+  <img src="placeholderastral.jpg" 
+  style = "border: 3px none;"
+  width = "500"
+  height = "500"
+  alt = "PLACEHOLDER"
+  class = "right-image">
+</nav>
+</body>
+</html>
