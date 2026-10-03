@@ -1,0 +1,72 @@
+/* Remember to save this code in a file called styles.css */
+      .box {
+            background-image: linear-gradient(rgba(255, 218, 185, 0.5),rgba(203, 185, 163, 0.5));
+            color: #4B5136;
+            font-family: Georgia, serif;
+            border: 3px solid #6B4426; 
+            border-radius: 20px;
+            padding: 20px;
+            margin: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 1300px;
+            height: auto;
+            display: flow-root;
+        }
+        .div {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        * {
+          text-decoration: none;
+        }
+
+        li {
+          list-style: none; 
+          display: inline-block;
+        }
+
+        li a {
+          color: #4B5136;
+          font-family: Georgia, serif;
+          font-size: 20px;
+          margin-right: 40px;
+        }
+
+        .img-design {
+          float: right;
+          margin-right: 50px;
+          box-shadow: 5px 8px 5px #8A8F73;
+        }
+
+        .complogo {
+          float: left;
+          box-shadow: 5px 8px 5px #8A8F73;
+          border-radius: 50px;
+        }
+
+        .regtext {
+          font-size: 20px;
+          text-shadow: 3px 3px 7px #8A8F73
+
+        }
+
+        p {
+          margin-bottom: 50px;
+        }
+
+        .btndesign {
+          background-image: linear-gradient(to right top,#556B2F, #6B8E23);
+          color: #ffffff;
+          border: 3px solid #6B4426;
+          border-radius: 30px;
+          box-shadow: 3px 5px 5px #8A8F73;
+          font-size: 20px;
+          font-family: Georgia, serif;
+          width: 200px;
+          height: 90px;
+          display: block;
+          margin-left: 200px;
+        }
