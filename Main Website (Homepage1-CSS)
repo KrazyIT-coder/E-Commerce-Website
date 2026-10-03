@@ -1,0 +1,110 @@
+        .box {
+            background-image: linear-gradient(rgba(255, 218, 185, 0.5),rgba(203, 185, 163, 0.5));
+            color: #4B5136;
+            font-family: Georgia, serif;
+            border: 3px solid #6B4426; 
+            border-radius: 20px;
+            padding: 20px;
+            margin: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 1300px;
+            height: auto;
+            display: flow-root;
+        }
+        .div {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        * {
+          text-decoration: none;
+        }
+
+        li {
+          list-style: none; 
+          display: inline-block;
+        }
+
+        li a {
+          color: #4B5136;
+          font-family: Georgia, serif;
+          font-size: 20px;
+          margin-right: 40px;
+        }
+
+        .img-design {
+          float: right;
+          margin-right: 50px;
+          box-shadow: 5px 8px 5px #8A8F73;
+          animation-name: slideleft;
+          animation-duration: 0.9s;
+          animation-timing-function: ease-out;
+          animation-iteration-count: 1;
+          animation-fill-mode: forwards;
+        }
+        @keyframes slideleft {
+            from{opacity: 0; transform: translateX(100px)}
+        }
+
+        .complogo {
+          float: left;
+          box-shadow: 5px 8px 5px #8A8F73;
+          border-radius: 50px;
+        }
+
+        .regtext {
+          font-size: 20px;
+          text-shadow: 3px 3px 7px #8A8F73
+
+        }
+
+        p {
+          margin-bottom: 50px;
+        }
+
+        button {
+          background-image: linear-gradient(to right top,#556B2F, #6B8E23);
+          color: #ffffff;
+          border: 3px solid #6B4426;
+          border-radius: 30px;
+          box-shadow: 3px 5px 5px #8A8F73;
+          font-size: 20px;
+          font-family: Georgia, serif;
+          cursor: pointer;
+          transition: 150ms ease;
+        }
+
+        .btndesign {
+          width: 200px;
+          height: 90px;
+          display: block;
+          margin-left: 200px;
+        }
+
+        button:hover {
+          background-image: linear-gradient(#90EE90, #8FBC8B);
+          color: #6B4426;
+          font-weight: bold;
+          scale: 1.2;
+        }
+
+        footer {
+          background-image: linear-gradient(rgba(85, 107, 47, 0.5), rgba(128, 128, 0, 1));
+          font-family: Georgia, serif;
+          color: white;
+          padding: 5px;
+          justify-content: space-between;
+        }
+
+        footer li {
+          display: list-item;
+        }
+
+        .footertext {
+          width: 700px;
+          display: flex;
+          align-items: left;
+          justify-content: space-between;
+        }
