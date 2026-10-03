@@ -3,55 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <title>Kathabi: Get Started!</title>
-    <style>
-        .box {
-            background-color: #CBB9A3;
-            color: #4B5136;
-            font-family: ;
-            border: 3px solid #6B4426; 
-            border-radius: 20px;
-            padding: 20px;
-            margin: 10px;
-            width: 900px;
-            height: auto;
-        }
-        .div {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-        li {
-          list-style: none; display: inline-block;
-        }
-
-        li a {
-          color: #4B5136;
-          font-family: ;
-          margin-right: 10px;
-        }
-    </style>
+  <link rel = "stylesheet" href = "styles.css">
 </head>
     
-<body style="background: #E8DCC5;">
+<body style = "background-image: linear-gradient(rgba(250, 250, 210, 0.7), rgba(255, 228, 181, 0.7), rgba(255, 218, 185, 1)), url(rizalpark.jpeg); background-repeat: no-repeat; background-position: center; background-size: cover">
 <nav class = "box">
-  <div class = "div">
-    <h2>Kathabi</h2>
+  <div class = "div"> 
+    <img class = "complogo"
+    src = "companylogo.jpeg" 
+    style = "border: 3px none;"
+    width = "120px"
+    height = "120px"
+    alt = "Company Logo">
+    <h1>KATHABI</h1>
     <ul>
       <li><a href = "Home">Home</a></li>
-      <li><a href = "Contacts">Contacts</a></li>
       <li><a href = "About Us">About Us</a></li>
       <li><a href = "Products">Products</a></li>
     </ul>
   </div>
 </nav>
 <nav class = "box">
-  <h2 style = "text-align: left;">Looking for something that gives a taste of Filipino <br> fashion, while being eco-friendly?</h1>
-  <img src="placeholderastral.jpg" 
-  style = "border: 3px none;"
-  width = "500"
-  height = "500"
-  alt = "PLACEHOLDER"
-  class = "right-image">
+  <h1 style = "text-align: left;">A world of Filipino & eco-friendly <br> fashion begins here</h1>
+    <img class = "img-design" 
+    src = "wovenclothes.jpeg" 
+    style = "border: 3px none;"
+    width = "500px"
+    height = "400px"
+    alt = "2 People Looking at Woven Clothes">
+
+    <p class = "regtext">You've come to the right place! A world of fashion is waiting to greet <br>
+    you to help fulfill all of your fashion needs. A variety of clothes from <br>
+    all categories is available, ranging from men's apparels, women's <br>
+    apparels, or even kids' apparels.</p>
+
+    <p class = "regtext">Before this world of fashion and clothes is opened up, let's get you <br>
+    started by weaving an account first!</p>
+
+    <button class = "btndesign"; >Get Started</button>
 </nav>
 </body>
 </html>
