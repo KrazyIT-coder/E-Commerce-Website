@@ -34,9 +34,12 @@
           margin-right: 40px;
         }
 
-        .img-design {
+        .img-position {
           float: right;
           margin-right: 50px;
+        }
+
+        .img-design {
           box-shadow: 5px 8px 5px #8A8F73;
           animation-name: slideleft;
           animation-duration: 0.9s;
@@ -56,8 +59,15 @@
 
         .regtext {
           font-size: 20px;
-          text-shadow: 3px 3px 7px #8A8F73
-
+          text-shadow: 3px 3px 7px #8A8F73;
+          animation-name: slideright;
+          animation-duration: 0.9s;
+          animation-timing-function: ease-out;
+          animation-iteration-count: 1;
+          animation-fill-mode: forwards;
+        }
+        @keyframes slideright {
+            from{opacity: 0; transform: translateX(-30px)}
         }
 
         p {
@@ -76,7 +86,7 @@
           transition: 150ms ease;
         }
 
-        .btndesign {
+        .btnposition {
           width: 200px;
           height: 90px;
           display: block;
@@ -89,6 +99,29 @@
           font-weight: bold;
           scale: 1.2;
         }
+
+        .search-bar {
+          margin: 20px 0;
+        }
+
+        input {
+          width: 300px;
+          margin-right: 12px;
+          padding: 12px;
+          border: 3px solid #8B5E3C;
+          border-radius: 20px;
+          font-size: 12px;
+        }
+
+        .search-bar button {
+          padding: 12px 20px;
+          margin-left: 5px;
+          border: none;
+          border-radius: 20px;
+          background-color: #8B5E3C;
+          color: #E8DCC5;
+          font-size: 12px;
+        } 
 
         footer {
           background-image: linear-gradient(rgba(85, 107, 47, 0.5), rgba(128, 128, 0, 1));
