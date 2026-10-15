@@ -1,1 +1,294 @@
-Hi Fiona
+/* 1. CSS Color Palette Variables */
+:root {
+  --brown: #8c4320;
+  --olive: #4b5136;
+  --sage: #8a8f73;
+  --walnut: #6b4426;
+  --cream: #e8dcc5;
+  --warm-taupe: #cbb9a3;
+  --dark-text: #2c2523;
+  --white: #ffffff;
+}
+
+/* 2. Global Resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--dark-text);
+  line-height: 1.6;
+}
+
+/* 3. Header & Logo Styling */
+header {
+  background-color: var(--walnut);
+  color: var(--cream);
+  padding: 40px 20px 35px;
+  text-align: center;
+  border-bottom: 5px solid var(--brown);
+}
+
+.logo-container {
+  margin-bottom: 12px;
+}
+
+.header-logo {
+  max-width: 180px;
+  height: auto;
+  display: inline-block;
+  background-color: var(--cream);
+  padding: 12px 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.header-subtitle {
+  font-size: 1.05rem;
+  color: var(--warm-taupe);
+  max-width: 700px;
+  margin: 10px auto 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* 4. Main Layout Container & Section Titles */
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.section-title {
+  text-align: center;
+  color: var(--brown);
+  font-size: 2rem;
+  margin-bottom: 35px;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--olive);
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+/* 5. About Brand Section */
+.about-brand-section {
+  margin-bottom: 60px;
+}
+
+.about-brand-card {
+  background-color: var(--white);
+  padding: 35px 40px;
+  border-radius: 12px;
+  border: 1px solid var(--warm-taupe);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.about-brand-card p {
+  color: var(--dark-text);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+.about-brand-card p:last-child {
+  margin-bottom: 0;
+}
+
+.about-brand-card strong {
+  color: var(--brown);
+}
+
+/* 6. Team Grid & Cards */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 70px;
+}
+
+.card {
+  background-color: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--warm-taupe);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card-img-container {
+  width: 100%;
+  height: 340px;
+  background-color: #f4efe6;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--warm-taupe);
+}
+
+.card-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.card-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: 4px;
+}
+
+.card-meta {
+  font-size: 0.88rem;
+  color: var(--olive);
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.card-bio {
+  font-size: 0.93rem;
+  color: var(--dark-text);
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.card-email {
+  font-size: 0.85rem;
+  color: var(--walnut);
+  background-color: var(--cream);
+  padding: 8px 12px;
+  border-radius: 6px;
+  word-break: break-all;
+  display: inline-block;
+  text-decoration: none;
+  border: 1px solid var(--warm-taupe);
+}
+
+.card-email:hover {
+  background-color: var(--warm-taupe);
+}
+
+/* 7. Terms Page Specific Styles */
+.terms-container {
+  max-width: 950px;
+}
+
+.terms-card {
+  background-color: var(--white);
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--warm-taupe);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+}
+
+.terms-card h2 {
+  color: var(--brown);
+  font-size: 1.6rem;
+  border-bottom: 2px solid var(--warm-taupe);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.terms-card h3 {
+  color: var(--walnut);
+  font-size: 1.15rem;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.terms-card p {
+  color: var(--dark-text);
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.terms-highlight {
+  background-color: var(--cream);
+  border-left: 4px solid var(--brown);
+  padding: 15px 20px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.terms-highlight p {
+  margin-bottom: 0;
+  color: var(--walnut);
+}
+
+.terms-list {
+  margin: 15px 0 20px 25px;
+  color: var(--dark-text);
+}
+
+.terms-list li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* 8. Footer & Navigation Button Styles */
+footer {
+  background-color: var(--olive);
+  color: var(--cream);
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 60px;
+  font-size: 0.9rem;
+}
+
+.footer-btn-container {
+  margin-top: 15px;
+}
+
+.terms-btn {
+  display: inline-block;
+  background-color: var(--brown);
+  color: var(--cream);
+  padding: 10px 22px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  border: 1px solid var(--warm-taupe);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.terms-btn:hover {
+  background-color: var(--walnut);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
