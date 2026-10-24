@@ -15,7 +15,7 @@
 </head>
 
 <!-- Contains all of the elements for the navigation bar -->
-<body style = "background-image: linear-gradient(rgba(250, 250, 210, 0.7), rgba(203, 181, 84, 0.7), rgb(255, 195, 213)); background-repeat: no-repeat; background-position: center; background-size: cover">
+<body style = "background-image: linear-gradient(rgba(250, 250, 210, 0.7), rgba(203, 181, 84, 0.851), rgb(255, 181, 203)); background-repeat: no-repeat; background-position: center; background-size: cover">
   <!-- Contains a grid where important statistical info is displayed-->
   <div class = "dashboard-grid">
 
@@ -42,7 +42,6 @@
           width = "120px"
           height = "120px"
           alt = "Company Logo">
-        <h1 class = "textcolorfont sidebar-comp-name">Kathabi</h1>
       </div>
 
         <!-- Main sidebar contents -->
@@ -56,30 +55,62 @@
         <!-- Sidebar list of items -->
         <ul class = "dashboard-list">
           <li class = "sidebar-item">
-            <span class = "material-symbols-sharp">monitoring</span> Analytics
+            <span class="material-symbols-sharp">dashboard</span> Overview
           </li>
+
           <li class = "sidebar-item">
-            <span class="material-symbols-sharp">payments</span> View Payments
+            <span class="material-symbols-sharp">shoppingmode</span> Product Sales
           </li>
+
           <li class = "sidebar-item">
-            <span class="material-symbols-sharp">orders</span> View Orders/Inventory
+            <span class="material-symbols-sharp">attach_money</span> Net Income
           </li>
+
+          <li class = "sidebar-item">
+            <span class="material-symbols-sharp">orders</span> Track Orders
+          </li>
+
+          <li class = "sidebar-item">
+            <span class="material-symbols-sharp">shelves</span> Current Inventory
+          </li>
+
+          <li class = "sidebar-item">
+            <span class="material-symbols-sharp">group</span> Company Employees
+          </li>
+
+          <li class = "sidebar-item">
+            <span class="material-symbols-sharp">home</span> Return to Main Website
+          </li>
+
         </ul>
      </aside>
 
      <!-- Main content of the dashboard webpage -->
       <main class = "dashboard-box textcolorfont box-cards">
 
-        <div class = "box-cards card-color1 card-text">
-          <h3>TRACK SALES</h3>
+        <div class = "box-cards card-color1 card-text1 card-size1">
+          <h4 style>NUMBER OF SALES</h4>
+          <p class = "card-text2">500 Sales</p>
         </div>
 
-        <div class = "box-cards card-color2 card-text">
-          <h3>VIEW PAYMENT</h3>
+        <div class = "box-cards card-color2 card-text1 card-size1">
+          <h4>NET INCOME</h4>
+          <p class = "card-text2">Php 429,041</p>
         </div>
 
-        <div class = "box-cards card-color3 card-text">
-          <h3>VIEW ORDERS/INVENTORY</h3>
+        <div class = "box-cards card-color3 card-text1 card-size1">
+          <h4>NUMBER OF ORDERS</h4>
+          <p class = "card-text2">106 Orders</p>
+        </div>
+
+        <div class = "box-cards card-color5 card-text1 card-size1">
+          <h4>CURRENT INVENTORY</h4>
+          <p class = "card-text2">68 Available Products</p>
+        </div>
+
+        <div class = "box-cards card-color6 card-text1 card-size1">
+          <h4>NUMBER OF EMPLOYEES</h4>
+          <p class = "card-text2">15 Employees</p>
         </div>
 
       </main>
