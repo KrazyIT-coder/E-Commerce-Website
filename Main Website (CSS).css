@@ -1,8 +1,7 @@
 /* Remember to save this code in a file called styles.css */
-      .box {
+      /* Box Styling */
+        .box {
             background-image: linear-gradient(rgba(255, 218, 185, 0.5),rgba(203, 185, 163, 0.5));
-            color: #4B5136;
-            font-family: Georgia, serif;
             border: 3px solid #6B4426; 
             border-radius: 20px;
             padding: 20px;
@@ -13,6 +12,7 @@
             height: auto;
             display: flow-root;
         }
+
         .div {
           display: flex;
           align-items: center;
@@ -23,7 +23,7 @@
           text-decoration: none;
         }
 
-        li {
+        .list-position {
           list-style: none; 
           display: inline-block;
         }
@@ -35,6 +35,7 @@
           margin-right: 40px;
         }
 
+        /* Image Styling */
         .img-position {
           float: right;
           margin-right: 50px;
@@ -53,11 +54,22 @@
         }
 
         .complogo {
-          float: left;
           box-shadow: 5px 8px 5px #8A8F73;
           border-radius: 50px;
         }
 
+        .complogo-position {
+          float: left;
+          margin-left: 50px;
+        }
+
+        .complogo-position2 {
+          margin: auto;
+          margin-top: 20px;
+          display: block;
+        }
+
+        /* Text Styling */
         .regtext {
           font-size: 20px;
           text-shadow: 3px 3px 7px #8A8F73;
@@ -71,10 +83,16 @@
             from{opacity: 0; transform: translateX(-30px)}
         }
 
+        .textcolorfont {
+          color: #4B5136;
+          font-family: Georgia, serif;
+        }
+
         p {
           margin-bottom: 50px;
         }
 
+        /* Button Styling */
         button {
           background-image: linear-gradient(to right top,#556B2F, #6B8E23);
           color: #ffffff;
@@ -101,6 +119,7 @@
           scale: 1.2;
         }
 
+        /* Search Bar Styling */
         .search-bar {
           margin: 20px 0;
         }
@@ -124,12 +143,15 @@
           font-size: 12px;
         } 
 
+        /* Footer Styling */
         footer {
-          background-image: linear-gradient(rgba(85, 107, 47, 0.5), rgba(128, 128, 0, 1));
+          background-image: linear-gradient(rgb(130, 130, 0), rgb(85, 107, 47));
           font-family: Georgia, serif;
           color: white;
           padding: 5px;
+          height: 170px;
           justify-content: space-between;
+          position: relative;
         }
 
         footer li {
@@ -141,4 +163,133 @@
           display: flex;
           align-items: left;
           justify-content: space-between;
+        }
+
+        /* Dashboard Styling */
+        .dashboard-grid {
+          display: grid;
+          grid-template-columns: 250px repeat(3, 1fr);;
+          grid-template-rows: 0.5fr 3fr;
+          grid-template-areas: "sidebar header header header" "sidebar box box box";
+          height: 100vh;
+        }
+
+        .dashboard-header {
+          grid-area: header;
+          height: 50px;
+          background-image: linear-gradient(rgba(255, 218, 185, 0.5),rgba(203, 185, 163, 0.5));
+          border: 3px solid #6B4426; 
+          border-radius: 20px;
+          padding: 20px;
+          margin: 10px;
+        }
+
+        .dashboard-sidebar {
+          grid-area: sidebar;
+          height: 100%;
+          background-image: linear-gradient(rgb(220, 176, 138),rgb(104, 76, 41));
+          border-right: 3px solid #6B4426;
+          box-shadow: 5px 0px 5px #8A8F73;
+          overflow-y: auto;
+        }
+
+        .dashboard-box {
+          grid-area: box;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(3, 1fr);
+          background-image: linear-gradient(rgba(255, 218, 185, 0.5),rgba(203, 185, 163, 0.5));
+          border: 3px solid #6B4426; 
+          border-radius: 20px;
+          padding: 20px;
+          margin: 50px;
+          height: 530px;
+          overflow-y: auto;
+        }
+
+        .material-symbols-sharp {
+          vertical-align: middle;
+          line-height: 3px;
+          font-size: 38px;
+          color: #4B5136;
+        }
+
+        .menu-icon {
+          display: none;
+        }
+
+        .sidebar-comp-name {
+          text-align: center;
+          padding-top: 10px;
+          padding-bottom: 50px
+        }
+
+        .sidebar-title {
+          padding: 30px 30px 30px 30px;
+          margin-bottom: 30px;
+        }
+
+        .sidebar-brand {
+          margin-top: 15px;
+          font-size: 30px;
+          font-weight: 500;
+        }
+
+        .dashboard-list {
+          padding: 0;
+          list-style-type: none;
+          margin-top: 15px;
+        }
+
+        .sidebar-item {
+          padding: 20px 20px 20px 20px;
+          color: #4B5136;
+          font-family: Georgia, serif;
+          font-weight: bold;
+          font-size: 14px;
+          white-space: nowrap;
+        }
+
+        .sidebar-item:hover {
+          background-image: linear-gradient(#90EE90, #8FBC8B);
+          color: #6B4426;
+          font-weight: bold;
+          cursor: pointer;
+        }
+
+        .sidebar-responsive {
+          display: inline !important;
+          position: absolute;
+          z-index: 12 !important;
+        }
+
+        .box-cards {
+          margin: 20px;
+          padding: 20px 20px 20px 20px;
+          gap: 30px;
+        }
+
+        .card-text {
+          text-align: center;
+          font-size: 18px;
+          font-weight: bold;
+          color: #ffffff;
+        }
+
+        .card-color1 {
+          background-image: linear-gradient(rgb(35, 142, 59),rgb(12, 124, 32));
+          border: 3px solid #ffffff; 
+          border-radius: 20px;
+        }
+
+        .card-color2 {
+          background-image: linear-gradient(rgb(55, 182, 85),rgb(19, 149, 43));
+          border: 3px solid #ffffff; 
+          border-radius: 20px;
+        }
+
+        .card-color3 {
+          background-image: linear-gradient(rgb(85, 189, 109),rgb(79, 144, 91));
+          border: 3px solid #ffffff; 
+          border-radius: 20px;
         }
