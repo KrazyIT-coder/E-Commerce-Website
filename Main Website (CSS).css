@@ -187,7 +187,7 @@
         .dashboard-sidebar {
           grid-area: sidebar;
           height: 100%;
-          background-image: linear-gradient(rgb(220, 176, 138),rgb(104, 76, 41));
+          background-image: linear-gradient(rgb(220, 176, 138),rgb(123, 92, 54));
           border-right: 3px solid #6B4426;
           box-shadow: 5px 0px 5px #8A8F73;
           overflow-y: auto;
@@ -216,12 +216,6 @@
 
         .menu-icon {
           display: none;
-        }
-
-        .sidebar-comp-name {
-          text-align: center;
-          padding-top: 10px;
-          padding-bottom: 50px
         }
 
         .sidebar-title {
@@ -264,32 +258,72 @@
         }
 
         .box-cards {
-          margin: 20px;
-          padding: 20px 20px 20px 20px;
-          gap: 30px;
+          margin: 10px;
+          padding: 10px 10px 10px 20px;
+          gap: 10px;
         }
 
-        .card-text {
-          text-align: center;
-          font-size: 18px;
+        .card-text1 {
+          text-align: left;
           font-weight: bold;
           color: #ffffff;
+        }
+
+        .card-text2 {
+          text-decoration: underline;
+          font-size: 20px;
+        }
+
+        .card-size1 {
+          width: 330px;
+        }
+
+        .card-position {
+          position: absolute
+        }
+
+        .card-size2 {
+          width: 355px;
         }
 
         .card-color1 {
           background-image: linear-gradient(rgb(35, 142, 59),rgb(12, 124, 32));
           border: 3px solid #ffffff; 
           border-radius: 20px;
+          box-shadow: 5px 8px 5px #8A8F73;
         }
 
         .card-color2 {
           background-image: linear-gradient(rgb(55, 182, 85),rgb(19, 149, 43));
           border: 3px solid #ffffff; 
           border-radius: 20px;
+          box-shadow: 5px 8px 5px #8A8F73;
         }
 
         .card-color3 {
           background-image: linear-gradient(rgb(85, 189, 109),rgb(79, 144, 91));
           border: 3px solid #ffffff; 
           border-radius: 20px;
+          box-shadow: 5px 8px 5px #8A8F73;
+        }
+
+        .card-color4 {
+          background-image: linear-gradient(rgb(77, 151, 67),rgb(78, 126, 68));
+          border: 3px solid #ffffff; 
+          border-radius: 20px;
+          box-shadow: 5px 8px 5px #8A8F73;
+        }
+
+        .card-color5 {
+          background-image: linear-gradient(rgb(120, 189, 85),rgb(107, 144, 79));
+          border: 3px solid #ffffff; 
+          border-radius: 20px;
+          box-shadow: 5px 8px 5px #8A8F73;
+        }
+
+        .card-color6 {
+          background-image: linear-gradient(rgb(142, 189, 85),rgb(115, 141, 66));
+          border: 3px solid #ffffff; 
+          border-radius: 20px;
+          box-shadow: 5px 8px 5px #8A8F73;
         }
