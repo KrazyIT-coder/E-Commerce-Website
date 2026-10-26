@@ -1,3 +1,5 @@
+// Remember to save this code in a file called script.js
+
 //====================================
 //Dashboard JavaScript Functionalities
 //====================================
