@@ -1,4 +1,3 @@
-
 // Find all the cards on the page
 var cards = document.querySelectorAll(".card");
 
