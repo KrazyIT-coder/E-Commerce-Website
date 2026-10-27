@@ -21,9 +21,6 @@
 
     <!-- Contains the special header for the dashboard -->
     <header class = "dashboard-header div">
-      <div class = "menu-icon div" onclick = "openSidebar()">
-        <span class="material-symbols-sharp">menu</span>
-      </div>
       <h1 class = "textcolorfont">Dashboard</h1>
       <div class= "header-left">
         <div class="Search Bar">
@@ -45,14 +42,6 @@
       </div>
 
         <!-- Main sidebar contents -->
-        <div class = "sidebar-title menu-icon">
-          <div class = "sidebar-brand">
-            <span class = "material-symbols-sharp">menu</span>
-          </div>
-          <span class="material-symbols-sharp" onclick = "closeSidebar()">close</span>
-        </div>
-
-        <!-- Sidebar list of items -->
         <ul class = "dashboard-list">
           <li class = "sidebar-item">
             <span class="material-symbols-sharp">dashboard</span> Overview
@@ -79,38 +68,48 @@
           </li>
 
           <li class = "sidebar-item">
-            <span class="material-symbols-sharp">home</span> Return to Main Website
+            <span class="material-symbols-sharp">home</span><a id = "home-item" href = "GetStarted.html">Return to Main Website</a>
           </li>
-
         </ul>
      </aside>
 
      <!-- Main content of the dashboard webpage -->
       <main class = "dashboard-box textcolorfont box-cards">
 
-        <div class = "box-cards card-color1 card-text1 card-size1">
-          <h4 style>NUMBER OF SALES</h4>
-          <p class = "card-text2">500 Sales</p>
+      <h1 class = "textcolorfont div">OVERVIEW</h1>
+        <div class = "box-row1">
+          <div class = "box-cards box-anim1 card-color1 card-text1 card-size1">
+            <h4>CURRENT INVENTORY</h4>
+            <p class = "card-text2">68 Available Products</p>
+          </div>
+
+          <div class = "box-cards box-anim1 card-color2 card-text1 card-size1">
+            <h4>NET INCOME</h4>
+            <p class = "card-text2">Php 429,041</p>
+          </div>
+
+          <div class = "box-cards box-anim1 card-color3 card-text1 card-size1">
+            <h4>NUMBER OF ORDERS</h4>
+            <p class = "card-text2">106 Orders</p>
+          </div>
         </div>
 
-        <div class = "box-cards card-color2 card-text1 card-size1">
-          <h4>NET INCOME</h4>
-          <p class = "card-text2">Php 429,041</p>
-        </div>
+        <div class = "box-row2">
+          <div class = "box-cards box-anim2 card-color5 card-text1 card-size2">
+            <h4 style>NUMBER OF SALES</h4>
+            <p class = "card-text2">500 Sales</p>
+            <div id = "barchart">
+              <canvas id = "salesChart"></canvas>
+            </div>
+          </div>
 
-        <div class = "box-cards card-color3 card-text1 card-size1">
-          <h4>NUMBER OF ORDERS</h4>
-          <p class = "card-text2">106 Orders</p>
-        </div>
-
-        <div class = "box-cards card-color5 card-text1 card-size1">
-          <h4>CURRENT INVENTORY</h4>
-          <p class = "card-text2">68 Available Products</p>
-        </div>
-
-        <div class = "box-cards card-color6 card-text1 card-size1">
-          <h4>NUMBER OF EMPLOYEES</h4>
-          <p class = "card-text2">15 Employees</p>
+          <div class = "box-cards box-anim2 card-color6 card-text1 card-size3">
+            <h4>NUMBER OF EMPLOYEES</h4>
+            <p class = "card-text2">25 Employees</p>
+            <div id = "piechart">
+              <canvas id = "employeeChart"></canvas>
+            </div>
+          </div>
         </div>
 
       </main>
@@ -130,7 +129,8 @@
 </footer>
 
 <!-- Used to link the website to the main javascript file -->
-<script src="script.js"></script>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.js" integrity="sha512-T/Zt9dXFrr8cLjWcDkt8WRUVNzj6c7K5y2G8xAAh1kGKcM+LdolRrNJR1bWwuulykpaNuRfFJKCKTzcsWTbKaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="script.js"></script>
 </html>
 <!-- I affirm that I have not given or received any unauthorized help on this assignment and that this work is my own. -->
