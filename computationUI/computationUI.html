@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kathabí – Order Summary</title>
+
+  <!-- Design -->
+  <link rel="stylesheet" href="computationUI.css">
+</head>
+
+<body>
+  <main class="slip">
+
+    <!-- Title -->
+    <h2>ORDER SUMMARY</h2>
+    <p class="tagline">Review the amounts before you pay</p>
+    <hr>
+
+    <!-- Cart items -->
+    <div id="items"></div>
+
+    <!-- Add a product -->
+    <p class="label" style="margin-top: 8px;">Add a product</p>
+    <div class="add-row">
+      <select id="productSelect" aria-label="Product"></select>
+      <select id="sizeSelect" aria-label="Size"></select>
+      <button class="btn" id="addButton" type="button">Add</button>
+    </div>
+    <div id="colorPicker"></div>
+    <p class="message" id="addMessage" role="status"></p>
+    <hr>
+
+    <!-- Delivery -->
+    <p class="label">Delivery</p>
+    <div id="shippingBox"></div>
+
+    <!-- Payment method -->
+    <p class="label" style="margin-top: 12px;">Payment</p>
+    <select id="paymentSelect" aria-label="Payment method" style="width: 100%;">
+      <option>GCash</option>
+      <option>Maya</option>
+      <option>Credit / debit card</option>
+      <option>Cash on delivery</option>
+    </select>
+    <hr>
+
+    <!-- Totals -->
+    <div class="row"><span>Subtotal</span>           <span id="subtotalText"></span></div>
+    <div class="row"><span>Shipping</span>           <span id="shippingText"></span></div>
+    <div class="row"><span>Included VAT (12%)</span> <span id="vatText"></span></div>
+    <hr class="thin">
+    <div class="row total"><span>Total to pay</span> <span id="totalText"></span></div>
+
+    <!-- Link to the receipt (change the href if file name is different) -->
+    <a class="btn pay-button" id="payButton" href="displayReceipt.html">Pay now</a>
+
+  </main>
+
+  
+  <script src="computationUI.js"></script>
+</body>
+</html>
