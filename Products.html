@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Lets the page adjust to the size of the device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kathabi: Products</title>
+
+  <!-- Google's free Material icons (same ones used in the Dashboard) -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Sharp" rel="stylesheet">
+
+  <!-- Styles for this page -->
+  <link rel="stylesheet" href="products.css">
+</head>
+
+<body>
+
+  <!-- ===== Sidebar menu (copied from the Dashboard) ===== -->
+  <aside class="sidebar" id="sidebar" aria-label="Main menu">
+    <img class="sidebar-logo"
+         src="IMAGES/companylogo.jpeg"
+         width="120" height="120"
+         alt="Kathabí company logo">
+
+    <div class="sidebar-title">
+      <span class="material-symbols-sharp" aria-hidden="true">menu</span>
+      <button type="button" id="closeBtn" aria-label="Close menu">
+        <span class="material-symbols-sharp">close</span>
+      </button>
+    </div>
+
+    <ul class="dashboard-list">
+      <li><a class="sidebar-item" href="H-Dashboard.html">
+        <span class="material-symbols-sharp">dashboard</span> Overview</a></li>
+
+      <li><a class="sidebar-item" href="Products.html" aria-current="page">
+        <span class="material-symbols-sharp">shopping_bag</span> Products</a></li>
+
+      <li><a class="sidebar-item" href="#">
+        <span class="material-symbols-sharp">attach_money</span> Net Income</a></li>
+
+      <li><a class="sidebar-item" href="#">
+        <span class="material-symbols-sharp">orders</span> Track Orders</a></li>
+
+      <li><a class="sidebar-item" href="#">
+        <span class="material-symbols-sharp">shelves</span> Current Inventory</a></li>
+
+      <li><a class="sidebar-item" href="#">
+        <span class="material-symbols-sharp">group</span> Company Employees</a></li>
+
+      <li><a class="sidebar-item" href="GetStarted.html">
+        <span class="material-symbols-sharp">home</span> Return to Main Website</a></li>
+    </ul>
+  </aside>
+
+  <!-- Dark layer behind the sidebar; clicking it closes the menu -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ===== Autoplay slideshow ===== -->
+  <main class="stage">
+    <div class="slide"><img src="IMAGES/Page1.png" alt="Woven bag and wooden sunglasses beside a model in a turquoise dress"></div>
+    <div class="slide"><img src="IMAGES/Page2.png" alt="Three models in bucket hats and denim: fashion with a sense of taste"></div>
+    <div class="slide"><img src="IMAGES/Page3.png" alt="Man wearing an embroidered barong on a heritage street"></div>
+
+    <!-- Checkout button (ADDED) -->
+    <a class="checkout-btn" href="mainComputationUI.html">Go to Checkout</a>
+
+    <!-- ===== Category rectangle ===== -->
+    <nav class="category-bar" aria-label="Product categories">
+      <button type="button" class="menu-btn" id="menuBtn"
+              aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
+        <span class="material-symbols-sharp">menu</span>
+      </button>
+
+      <ul class="categories">
+        <li><a href="menTop.html">Men Top</a></li>
+        <li><a href="#men-bottom">Men Bottom</a></li>
+        <li><a href="kidsCollection.html">Kids Collection</a></li>
+        <li><a href="womenBottom.html">Women Bottom</a></li>
+        <li><a href="womenTop.html">Women Top</a></li>
+        <li><a href="shoesnFootwear.html">Shoes &amp; Footwear</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footertext">
+      <h3>Group Member Names</h3>
+      <h3>Section: IT11S2</h3>
+      <h3>Course: BSIT</h3>
+    </div>
+    <ul>
+      <li>Kyle Steven C. Manuel</li>
+      <li>Fiona G. Mata</li>
+      <li>John Terrence V. Mckeehan</li>
+      <li>Chriz Justin D. Nuestro</li>
+      <li>Estephen A. Tolentino</li>
+    </ul>
+  </footer>
+
+  <script>
+    // Opens and closes the sidebar menu
+    const sidebar  = document.getElementById("sidebar");
+    const overlay  = document.getElementById("overlay");
+    const menuBtn  = document.getElementById("menuBtn");
+    const closeBtn = document.getElementById("closeBtn");
+
+    function openSidebar() {
+      sidebar.classList.add("open");
+      overlay.classList.add("open");
+      menuBtn.setAttribute("aria-expanded", "true");
+      closeBtn.focus();
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove("open");
+      overlay.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuBtn.focus();
+    }
+
+    menuBtn.addEventListener("click", openSidebar);
+    closeBtn.addEventListener("click", closeSidebar);
+    overlay.addEventListener("click", closeSidebar);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && sidebar.classList.contains("open")) closeSidebar();
+    });
+  </script>
+</body>
+</html>
+<!-- I affirm that I have not given or received any unauthorized help on this assignment and that this work is my own. -->
