@@ -1,0 +1,297 @@
+/* =====================================================
+   Kathabí: Products page
+   Palette and fonts match the rest of the website
+   ===================================================== */
+:root {
+  --olive: #4b5136;
+  --walnut: #6b4426;
+  --brown: #8c4320;
+  --sage: #8a8f73;
+  --cream: #e8dcc5;
+  --taupe: #cbb9a3;
+}
+
+* { box-sizing: border-box; text-decoration: none; }
+
+html, body { margin: 0; }
+
+body {
+  font-family: Georgia, serif;
+  color: var(--olive);
+  background: var(--cream);
+}
+
+.material-symbols-sharp {
+  vertical-align: middle;
+  font-size: 38px;
+  color: var(--olive);
+}
+
+/* ---------- Slideshow ---------- */
+.stage {
+  position: relative;
+  height: 100vh;
+  min-height: 480px;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  animation: slide-left 18s linear infinite both;
+  will-change: transform;
+}
+.slide:nth-child(2) { animation-delay: 6s; }
+.slide:nth-child(3) { animation-delay: 12s; }
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Each slide glides in from the right, rests, then glides out to the left
+   while the next slide glides in behind it (18s total = 3 slides x 6s) */
+@keyframes slide-left {
+  0%      { transform: translateX(100%);  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+  5%      { transform: translateX(0); }
+  33.33%  { transform: translateX(0);     animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+  38.33%  { transform: translateX(-100%); }
+  100%    { transform: translateX(-100%); }
+}
+
+/* ---------- Category rectangle ---------- */
+.category-bar {
+  position: absolute;
+  left: 50%;
+  bottom: 7%;
+  transform: translateX(-50%);
+  width: min(1240px, 94%);
+  display: flex;
+  align-items: stretch;
+  padding: 6px 10px;
+  background: rgba(255, 248, 235, 0.86);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 3px solid var(--walnut);
+  border-radius: 20px;
+  box-shadow: 5px 8px 5px rgba(138, 143, 115, 0.7);
+  z-index: 5;
+}
+
+.menu-btn {
+  flex: none;
+  width: 60px;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 0;
+  border-right: 2px solid var(--taupe);
+  margin-right: 8px;
+  cursor: pointer;
+}
+.menu-btn:hover .material-symbols-sharp { color: var(--brown); }
+
+.categories {
+  flex: 1;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Every category gets the same width, so the spacing stays even */
+.categories li { flex: 1 1 0; min-width: 0; }
+
+.categories a {
+  position: relative;
+  display: block;
+  padding: 20px 4px;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--olive);
+  font-size: clamp(12px, 1.1vw, 15px);
+  font-weight: bold;
+  transition: color 200ms ease;
+  }
+
+.categories a::after {
+  content: "";
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 11px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--brown);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 250ms ease;
+}
+
+.categories a:hover,
+.categories a:focus-visible { color: var(--brown); }
+.categories a:hover::after,
+.categories a:focus-visible::after { transform: scaleX(1); }
+
+.menu-btn:focus-visible,
+.categories a:focus-visible,
+.sidebar a:focus-visible,
+.sidebar button:focus-visible {
+  outline: 3px solid var(--brown);
+  outline-offset: 2px;
+}
+
+/* ---------- Sidebar (copied from the Dashboard) ---------- */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  z-index: 30;
+  overflow-y: auto;
+  background-image: linear-gradient(rgb(220, 176, 138), rgb(123, 92, 54));
+  border-right: 3px solid var(--walnut);
+  box-shadow: 5px 0 5px var(--sage);
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition: transform 350ms ease, visibility 0s linear 350ms;
+}
+.sidebar.open {
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 350ms ease, visibility 0s;
+}
+
+.sidebar-logo {
+  display: block;
+  margin: 20px auto 0;
+  border-radius: 50px;
+  box-shadow: 5px 8px 5px var(--sage);
+}
+
+.sidebar-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  margin-bottom: 10px;
+}
+.sidebar-title button {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.dashboard-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-item {
+  display: block;
+  padding: 20px;
+  color: var(--olive);
+  font-family: Georgia, serif;
+  font-weight: bold;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.sidebar-item:hover {
+  background-image: linear-gradient(#90ee90, #8fbc8b);
+  color: var(--walnut);
+}
+.sidebar-item[aria-current="page"] {
+  background: rgba(255, 255, 255, 0.28);
+  box-shadow: inset 5px 0 0 var(--walnut);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: rgba(44, 37, 35, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 350ms ease, visibility 0s linear 350ms;
+}
+.overlay.open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 350ms ease, visibility 0s;
+}
+
+/* ---------- Footer (same as the other pages) ---------- */
+footer {
+  background-image: linear-gradient(rgb(130, 130, 0), rgb(85, 107, 47));
+  color: #fff;
+  padding: 10px 20px 16px;
+}
+.footertext {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 40px;
+}
+footer ul { margin: 0; padding: 0; list-style: none; }
+
+/* ---------- Smaller screens ---------- */
+@media (max-width: 900px) {
+  .stage { height: 75vh; }
+  .categories { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .categories a { padding: 12px 4px; }
+  .categories a::after { bottom: 6px; }
+}
+@media (max-width: 520px) {
+  .categories { grid-template-columns: repeat(2, 1fr); }
+  .category-bar { bottom: 4%; }
+}
+
+/* ---------- Reduced motion: fade instead of sliding ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .slide { animation-name: crossfade-still; }
+  @keyframes crossfade-still {
+    0%      { opacity: 0; transform: none; }
+    5%      { opacity: 1; }
+    33.33%  { opacity: 1; }
+    38.33%  { opacity: 0; }
+    100%    { opacity: 0; transform: none; }
+  }
+  .sidebar, .sidebar.open, .overlay, .overlay.open { transition: none; }
+}
+
+/* ---------- Checkout button ---------- */
+.checkout-btn {
+  position: absolute;
+  left: 22.4%;
+  bottom: 30%;
+  z-index: 5;
+  display: inline-block;
+  padding: 14px 32px;
+  background-image: linear-gradient(to right top, #556B2F, #6B8E23);
+  color: #fff;
+  border: 3px solid var(--walnut);
+  border-radius: 30px;
+  box-shadow: 3px 5px 5px var(--sage);
+  font-family: Georgia, serif;
+  font-size: 19px;
+  cursor: pointer;
+  transition: 150ms ease;
+}
+
+.checkout-btn:hover {
+  background-image: linear-gradient(#90EE90, #8FBC8B);
+  color: var(--walnut);
+  font-weight: bold;
+  transform: scale(1.08);
+}
+
+.checkout-btn:focus-visible {
+  outline: 3px solid var(--brown);
+  outline-offset: 3px;
+}
