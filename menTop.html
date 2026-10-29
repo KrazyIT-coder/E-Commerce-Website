@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kathabí Products</title>
+  <style>
+/* Page */
+body {
+  background: #F4EFE4;
+  font-family: Arial, sans-serif;
+  color: #3A2418;
+  padding-bottom: 90px; /* room for the cart bar */
+}
+
+/* The row of cards: 4 across */
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 0 16px;
+}
+
+/* One item = a card + its Add to Cart button underneath */
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* One card */
+.card {
+  position: relative;
+  height: 300px;
+  background: #E8B896;
+}
+
+/* The photo fills the whole card */
+.photo {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Left and right arrows */
+.arrow {
+  position: absolute;
+  top: 45%;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.left {
+  left: 5px;
+}
+
+.right {
+  right: 5px;
+}
+
+/* Bottom part of the card */
+.info {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.colors {
+  margin-bottom: 8px;
+}
+
+.color {
+  width: 28px;
+  height: 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.name {
+  margin: 0;
+  font-weight: bold;
+}
+
+.price {
+  margin: 0;
+  font-size: 20px;
+}
+
+/* Add to Cart button under each card */
+.checkout-btn {
+  background: #3A2418;
+  color: #F4EFE4;
+  border: none;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.checkout-btn:hover {
+  background: #522f1f;
+}
+
+.checkout-btn:focus-visible,
+.sheet button:focus-visible,
+.proceed:focus-visible {
+  outline: 3px solid #E8B896;
+  outline-offset: 2px;
+}
+
+/* ---------- Add to Cart pop-up (slides up from the bottom, like Shopee) ---------- */
+
+/* Dark layer behind the pop-up */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(58, 36, 24, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s, visibility 0.25s;
+  z-index: 10;
+}
+
+.backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* The pop-up itself */
+.sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  background: #FBF8F1;
+  border-radius: 16px 16px 0 0;
+  padding: 16px;
+  transform: translateY(100%);
+  visibility: hidden;
+  transition: transform 0.3s ease, visibility 0.3s;
+  z-index: 11;
+}
+
+.sheet.open {
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.sheet-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  color: #3A2418;
+  cursor: pointer;
+}
+
+/* Photo + price at the top */
+.sheet-top {
+  display: flex;
+  gap: 14px;
+  align-items: flex-end;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #E5DCCB;
+}
+
+.sheet-thumb {
+  width: 96px;
+  height: 96px;
+  border-radius: 6px;
+  background-color: #E8B896;
+  background-size: cover;
+  background-position: center;
+  margin-top: -36px;
+  border: 3px solid #FBF8F1;
+  flex-shrink: 0;
+}
+
+.sheet-price {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.sheet-name {
+  margin: 2px 0 0;
+  font-size: 14px;
+}
+
+/* Color and size choices */
+.sheet-label {
+  margin: 16px 0 8px;
+  font-size: 14px;
+}
+
+.sheet-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #FBF8F1;
+  color: #3A2418;
+  border: 1px solid #CFC3AE;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.chip.selected {
+  border-color: #3A2418;
+  background: #F3E3D3;
+  font-weight: bold;
+}
+
+.swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* Quantity row */
+.qty-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+  border: 1px solid #CFC3AE;
+  border-radius: 4px;
+}
+
+.qty button {
+  width: 36px;
+  height: 34px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #3A2418;
+  cursor: pointer;
+}
+
+.qty button:disabled {
+  color: #BDB19B;
+  cursor: not-allowed;
+}
+
+.qty span {
+  min-width: 36px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* The big button at the bottom of the pop-up */
+.sheet-go {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  background: #3A2418;
+  color: #F4EFE4;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.sheet-go:hover {
+  background: #522f1f;
+}
+
+/* ---------- Cart bar (stays at the bottom once something is in the cart) ---------- */
+.cart-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  background: #FBF8F1;
+  border-top: 1px solid #E5DCCB;
+  transform: translateY(100%);
+  visibility: hidden;
+  transition: transform 0.3s ease, visibility 0.3s;
+  z-index: 9;
+}
+
+.cart-bar.show {
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.cart-text {
+  font-size: 13px;
+}
+
+.cart-text strong {
+  display: block;
+  font-size: 18px;
+}
+
+.proceed {
+  background: #3A2418;
+  color: #F4EFE4;
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 12px 22px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.proceed:hover {
+  background: #522f1f;
+}
+
+/* Small message after adding to cart */
+.toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translate(-50%, 20px);
+  max-width: 90%;
+  background: #3A2418;
+  color: #F4EFE4;
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+  z-index: 30;
+}
+
+.toast.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+/* Respect people who turn off animations */
+@media (prefers-reduced-motion: reduce) {
+  .backdrop, .sheet, .toast, .cart-bar {
+    transition: none;
+  }
+}
+
+/* Tablets and phones: still 4 across, just smaller */
+@media (max-width: 700px) {
+  .products {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .card {
+    height: 220px;
+  }
+
+  .name {
+    font-size: 11px;
+  }
+
+  .price {
+    font-size: 14px;
+  }
+
+  .color {
+    width: 18px;
+    height: 14px;
+  }
+
+  .checkout-btn {
+    padding: 10px 4px;
+    font-size: 12px;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <div class="products">
+
+    <div class="item">
+      <div class="card" data-photos="Products-Images/Men-Top-Images/MBSPBW.jpg, Products-Images/Men-Top-Images/MBSPWG.jpg">
+        <div class="photo"></div>
+
+        <button class="arrow left" type="button" aria-label="Previous photo">&#10094;</button>
+        <button class="arrow right" type="button" aria-label="Next photo">&#10095;</button>
+
+        <div class="info">
+          <div class="colors">
+            <button class="color" type="button" style="background:#E8B896" data-card-color="#E8B896" aria-label="Peach"></button>
+            <button class="color" type="button" style="background:#EDE6D6" data-card-color="#EDE6D6" aria-label="Cream"></button>
+          </div>
+          <p class="name">Modern Barong Street Polo</p>
+          <p class="price">₱790</p>
+        </div>
+      </div>
+      <button class="checkout-btn" type="button">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <div class="card" data-photos="Products-Images/Men-Top-Images/KEHW.jpg, Products-Images/Men-Top-Images/KEHB.jpg">
+        <div class="photo"></div>
+
+        <button class="arrow left" type="button" aria-label="Previous photo">&#10094;</button>
+        <button class="arrow right" type="button" aria-label="Next photo">&#10095;</button>
+
+        <div class="info">
+          <div class="colors">
+            <button class="color" type="button" style="background:#f5f5f4" data-card-color="#E8B896" aria-label="White"></button>
+            <button class="color" type="button" style="background:#332504" data-card-color="#EDE6D6" aria-label="Dark brown"></button>
+          </div>
+          <p class="name">Kayumanggi Everyday Henley</p>
+          <p class="price">₱450</p>
+        </div>
+      </div>
+      <button class="checkout-btn" type="button">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <div class="card" data-photos="Products-Images/Men-Top-Images/KUGCW.jpg, Products-Images/Men-Top-Images/KUGCW2.jpg, Products-Images/Men-Top-Images/KUGCB.jpg">
+        <div class="photo"></div>
+
+        <button class="arrow left" type="button" aria-label="Previous photo">&#10094;</button>
+        <button class="arrow right" type="button" aria-label="Next photo">&#10095;</button>
+
+        <div class="info">
+          <div class="colors">
+            <button class="color" type="button" style="background:#dbdbdb" data-card-color="#EDE6D6" aria-label="Light gray"></button>
+            <button class="color" type="button" style="background:#dfb690" data-card-color="#C9BFB0" aria-label="Tan"></button>
+            <button class="color" type="button" style="background:#060608" data-card-color="#C9BFB0" aria-label="Black"></button>
+          </div>
+          <p class="name">Kadena Upcycled Graphic Tee</p>
+          <p class="price">₱390</p>
+        </div>
+      </div>
+      <button class="checkout-btn" type="button">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <div class="card" data-photos="Products-Images/Men-Top-Images/KUDS1.jpg, Products-Images/Men-Top-Images/KUDS2.jpg">
+        <div class="photo"></div>
+
+        <button class="arrow left" type="button" aria-label="Previous photo">&#10094;</button>
+        <button class="arrow right" type="button" aria-label="Next photo">&#10095;</button>
+
+        <div class="info">
+          <div class="colors">
+            <button class="color" type="button" style="background:linear-gradient(135deg,#2F4A6B 33%,#5B7FA6 33% 66%,#9DB8D4 66%)" data-card-color="#D6D9DC" aria-label="Denim patchwork"></button>
+            <button class="color" type="button" style="background:linear-gradient(135deg,#C4513A 25%,#E3B23C 25% 50%,#3F7F86 50% 75%,#F1E6D3 75%)" data-card-color="#EADCC8" aria-label="Multicolor patchwork"></button>
+          </div>
+          <p class="name">Katipunan Upcycled Denim Shacket</p>
+          <p class="price">₱990</p>
+        </div>
+      </div>
+      <button class="checkout-btn" type="button">Add to Cart</button>
+    </div>
+
+  </div>
+
+  <!-- Add to Cart pop-up (one pop-up, reused by every card) -->
+  <div class="backdrop" id="backdrop"></div>
+
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetName">
+    <button class="sheet-close" id="sheetClose" type="button" aria-label="Close">&times;</button>
+
+    <div class="sheet-top">
+      <div class="sheet-thumb" id="sheetThumb"></div>
+      <div>
+        <p class="sheet-price" id="sheetPrice"></p>
+        <p class="sheet-name" id="sheetName"></p>
+      </div>
+    </div>
+
+    <p class="sheet-label">Color: <strong id="sheetColorName"></strong></p>
+    <div class="sheet-options" id="sheetColors"></div>
+
+    <p class="sheet-label">Size</p>
+    <div class="sheet-options" id="sheetSizes"></div>
+
+    <div class="qty-row">
+      <span>Quantity</span>
+      <div class="qty">
+        <button type="button" id="qtyMinus" aria-label="Decrease quantity">&minus;</button>
+        <span id="qtyNumber">1</span>
+        <button type="button" id="qtyPlus" aria-label="Increase quantity">+</button>
+      </div>
+    </div>
+
+    <button class="sheet-go" id="sheetGo" type="button"></button>
+  </div>
+
+  <!-- Cart bar: appears once something is in the cart -->
+  <div class="cart-bar" id="cartBar">
+    <div class="cart-text">
+      <span id="cartCount"></span>
+      <strong id="cartSubtotal"></strong>
+    </div>
+    <!-- Change this href if your order summary file has a different name -->
+    <a class="proceed" id="proceedLink" href="mainComputationUI.html">Proceed to Checkout</a>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+// Find all the cards on the page
+var cards = document.querySelectorAll(".card");
+
+// Do the same thing for every card
+cards.forEach(function (card) {
+
+  var photoBox = card.querySelector(".photo");
+  var photos = card.dataset.photos.split(",").map(function (p) {
+    return p.trim();
+  });
+  var leftArrow = card.querySelector(".left");
+  var rightArrow = card.querySelector(".right");
+  var colorButtons = card.querySelectorAll(".color");
+
+  // Which photo are we showing? 0 = the first one
+  var current = 0;
+
+  // Show the current photo, and highlight its color button
+  function showPhoto() {
+    photoBox.style.backgroundImage = 'url("' + photos[current] + '")';
+
+    colorButtons.forEach(function (button, index) {
+      var isActive = index === current;
+      button.classList.toggle("active", isActive);
+      if (isActive) {
+        card.style.background = button.dataset.cardColor;
+      }
+    });
+  }
+
+  // Right arrow: go to the next photo
+  rightArrow.onclick = function () {
+    current = current + 1;
+    if (current >= photos.length) {
+      current = 0;
+    }
+    showPhoto();
+  };
+
+  // Left arrow: go to the previous photo
+  leftArrow.onclick = function () {
+    current = current - 1;
+    if (current < 0) {
+      current = photos.length - 1;
+    }
+    showPhoto();
+  };
+
+  // Color buttons: the 1st button shows photo 1, the 2nd shows photo 2
+  colorButtons.forEach(function (button, index) {
+    button.onclick = function () {
+      current = index;
+      showPhoto();
+    };
+  });
+
+  // Let the pop-up read and change this card's current color/photo
+  card.getCurrent = function () {
+    return current;
+  };
+  card.setCurrent = function (index) {
+    current = index;
+    showPhoto();
+  };
+
+  showPhoto();
+});
+
+
+// ---------- The cart (saved in the browser so the order summary page can read it) ----------
+
+var CART_KEY = "kathabiCart";
+var cart = [];
+
+function loadCart() {
+  try {
+    var saved = JSON.parse(localStorage.getItem(CART_KEY));
+    if (Array.isArray(saved)) {
+      cart = saved;
+    }
+  } catch (error) {
+    cart = [];
+  }
+}
+
+function saveCart() {
+  try {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  } catch (error) {
+    console.log("Could not save the cart:", error);
+  }
+}
+
+function formatPrice(number) {
+  return "₱" + number.toLocaleString("en-PH");
+}
+
+// Show or hide the cart bar at the bottom
+var cartBar = document.getElementById("cartBar");
+
+function showCartBar() {
+  var count = 0;
+  var subtotal = 0;
+  cart.forEach(function (line) {
+    count = count + line.qty;
+    subtotal = subtotal + line.price * line.qty;
+  });
+
+  document.getElementById("cartCount").textContent = count + (count === 1 ? " item in cart" : " items in cart");
+  document.getElementById("cartSubtotal").textContent = "Subtotal " + formatPrice(subtotal);
+  cartBar.classList.toggle("show", count > 0);
+}
+
+// Add a product. Same name + size + color just adds to the quantity.
+function addToCart(name, price, size, color, qty) {
+  var found = false;
+  cart.forEach(function (line) {
+    if (line.name === name && line.size === size && line.color === color) {
+      line.qty = line.qty + qty;
+      found = true;
+    }
+  });
+
+  if (found === false) {
+    cart.push({ name: name, price: price, size: size, color: color, qty: qty });
+  }
+
+  saveCart();
+  showCartBar();
+}
+
+// The color exactly as written on the card (so it matches the order summary page)
+function swatchValue(colorButton) {
+  var style = colorButton.getAttribute("style") || "";
+  return style.replace(/^\s*background\s*:\s*/i, "").replace(/;\s*$/, "").trim();
+}
+
+loadCart();
+showCartBar();
+
+
+// ---------- Add to Cart pop-up ----------
+
+var sheet = document.getElementById("sheet");
+var backdrop = document.getElementById("backdrop");
+var sheetThumb = document.getElementById("sheetThumb");
+var sheetPrice = document.getElementById("sheetPrice");
+var sheetName = document.getElementById("sheetName");
+var sheetColorName = document.getElementById("sheetColorName");
+var sheetColors = document.getElementById("sheetColors");
+var sheetSizes = document.getElementById("sheetSizes");
+var qtyNumber = document.getElementById("qtyNumber");
+var qtyMinus = document.getElementById("qtyMinus");
+var qtyPlus = document.getElementById("qtyPlus");
+var sheetGo = document.getElementById("sheetGo");
+var toast = document.getElementById("toast");
+
+var SIZES = ["S", "M", "L", "XL"];
+var MAX_QTY = 10;
+
+var openCard = null;     // the card whose pop-up is open
+var openButton = null;   // the button that opened it (so we can return focus)
+var chosenSize = "M";
+var quantity = 1;
+var unitPrice = 0;
+var toastTimer = null;
+
+// Update everything that depends on color, size or quantity
+function refreshSheet() {
+  var index = openCard.getCurrent();
+  var colorButtons = openCard.querySelectorAll(".color");
+
+  sheetThumb.style.backgroundImage = openCard.querySelector(".photo").style.backgroundImage;
+  sheetColorName.textContent = colorButtons[index].getAttribute("aria-label");
+
+  Array.prototype.forEach.call(sheetColors.children, function (chip, i) {
+    chip.classList.toggle("selected", i === index);
+    chip.setAttribute("aria-pressed", i === index);
+  });
+
+  Array.prototype.forEach.call(sheetSizes.children, function (chip) {
+    var isSelected = chip.textContent === chosenSize;
+    chip.classList.toggle("selected", isSelected);
+    chip.setAttribute("aria-pressed", isSelected);
+  });
+
+  qtyNumber.textContent = quantity;
+  qtyMinus.disabled = quantity <= 1;
+  qtyPlus.disabled = quantity >= MAX_QTY;
+  sheetGo.textContent = "Add to Cart · " + formatPrice(unitPrice * quantity);
+}
+
+function openSheet(card, button) {
+  openCard = card;
+  openButton = button;
+  chosenSize = "M";
+  quantity = 1;
+
+  var priceText = card.querySelector(".price").textContent;
+  unitPrice = parseInt(priceText.replace(/[^0-9]/g, ""), 10);
+  sheetPrice.textContent = priceText;
+  sheetName.textContent = card.querySelector(".name").textContent;
+
+  // Build one chip for each color on the card
+  sheetColors.innerHTML = "";
+  card.querySelectorAll(".color").forEach(function (colorButton, i) {
+    var chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "chip";
+
+    var swatch = document.createElement("span");
+    swatch.className = "swatch";
+    swatch.style.background = swatchValue(colorButton);
+
+    chip.appendChild(swatch);
+    chip.appendChild(document.createTextNode(colorButton.getAttribute("aria-label")));
+
+    chip.onclick = function () {
+      card.setCurrent(i);   // also changes the photo on the card
+      refreshSheet();
+    };
+    sheetColors.appendChild(chip);
+  });
+
+  // Build one chip for each size
+  sheetSizes.innerHTML = "";
+  SIZES.forEach(function (size) {
+    var chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "chip";
+    chip.textContent = size;
+    chip.onclick = function () {
+      chosenSize = size;
+      refreshSheet();
+    };
+    sheetSizes.appendChild(chip);
+  });
+
+  refreshSheet();
+
+  backdrop.classList.add("open");
+  sheet.classList.add("open");
+  document.body.style.overflow = "hidden";
+  document.getElementById("sheetClose").focus();
+}
+
+function closeSheet() {
+  backdrop.classList.remove("open");
+  sheet.classList.remove("open");
+  document.body.style.overflow = "";
+  if (openButton) {
+    openButton.focus();
+  }
+  openCard = null;
+}
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function () {
+    toast.classList.remove("show");
+  }, 3000);
+}
+
+// Each Add to Cart button under a card opens the pop-up for that card
+document.querySelectorAll(".item").forEach(function (item) {
+  var button = item.querySelector(".checkout-btn");
+  var card = item.querySelector(".card");
+  button.onclick = function () {
+    openSheet(card, button);
+  };
+});
+
+// Quantity buttons
+qtyMinus.onclick = function () {
+  if (quantity > 1) {
+    quantity = quantity - 1;
+    refreshSheet();
+  }
+};
+qtyPlus.onclick = function () {
+  if (quantity < MAX_QTY) {
+    quantity = quantity + 1;
+    refreshSheet();
+  }
+};
+
+// Closing: X button, tapping the dark area, or the Escape key
+document.getElementById("sheetClose").onclick = closeSheet;
+backdrop.onclick = closeSheet;
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape" && openCard) {
+    closeSheet();
+  }
+});
+
+// The big button in the pop-up: put the product in the cart
+sheetGo.onclick = function () {
+  var colorButtons = openCard.querySelectorAll(".color");
+  var colorButton = colorButtons[openCard.getCurrent()];
+  var name = sheetName.textContent;
+  var colorName = colorButton.getAttribute("aria-label");
+  var addedQty = quantity;
+  var addedSize = chosenSize;
+
+  addToCart(name, unitPrice, addedSize, swatchValue(colorButton), addedQty);
+
+  closeSheet();
+  showToast("Added to cart: " + addedQty + " × " + name + " (" + colorName + ", " + addedSize + ")");
+};
+  </script>
+</body>
+</html>

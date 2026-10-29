@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kathabí Products</title>
+  <style>
+/* Page */
+body {
+  background: #F4EFE4;
+  font-family: Arial, sans-serif;
+  color: #3A2418;
+}
+
+/* The row of cards: 4 across */
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 0 16px;
+}
+
+/* One card */
+.card {
+  position: relative;
+  height: 300px;
+  background: #E8B896;
+}
+
+/* The photo fills the whole card */
+.photo {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Left and right arrows */
+.arrow {
+  position: absolute;
+  top: 45%;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.left {
+  left: 5px;
+}
+
+.right {
+  right: 5px;
+}
+
+/* Bottom part of the card */
+.info {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.colors {
+  margin-bottom: 8px;
+}
+
+.color {
+  width: 28px;
+  height: 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.name {
+  margin: 0;
+  font-weight: bold;
+}
+
+.price {
+  margin: 0;
+  font-size: 20px;
+}
+
+/* Tablets and phones: still 4 across, just smaller */
+@media (max-width: 700px) {
+  .products {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .card {
+    height: 220px;
+  }
+
+  .name {
+    font-size: 11px;
+  }
+
+  .price {
+    font-size: 14px;
+  }
+
+  .color {
+    width: 18px;
+    height: 14px;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <div class="products">
+
+    <div class="card" data-photos="Products-Images/Kids-Collection-Images/BISDG.jpg, Products-Images/Kids-Collection-Images/BISDG2.jpg">
+      <div class="photo"></div>
+
+      <button class="arrow left" type="button" aria-label="Previous photo">&#10094;</button>
+      <button class="arrow right" type="button" aria-label="Next photo">&#10095;</button>
+
+      <div class="info">
+        <div class="colors">
+          <button class="color" type="button" style="background:#EDE6D6" data-card-color="#EDE6D6" aria-label="Cream"></button>
+        </div>
+        <p class="name">Bulilit Inabel Smocked Dress (Girls)</p>
+        <p class="price">₱450</p>
+      </div>
+    </div>
+
+    <div class="card" data-photos="Products-Images/Kids-Collection-Images/LMBS1.jpg, Products-Images/Kids-Collection-Images/LMBS2.jpg">
+      <div class="photo"></div>
+
+      <button class="arrow left" type="button" aria-label="Previous photo">&#10094;</button>
+      <button class="arrow right" type="button" aria-label="Next photo">&#10095;</button>
+
+      <div class="info">
+        <div class="colors">
+          <button class="color" type="button" style="background:#F3EEE3" data-card-color="#C9D5A8" aria-label="Off-white"></button>
+          <button class="color" type="button" style="background:#1F2A44" data-card-color="#D9CDBA" aria-label="Navy"></button>
+        </div>
+        <p class="name">Lahi Mini Barong Shirt (Boys)</p>
+        <p class="price">₱390</p>
+      </div>
+    </div>
+
+    <div class="card" data-photos="Products-Images/Kids-Collection-Images/LUDS1.jpg, Products-Images/Kids-Collection-Images/LUDS2.jpg">
+      <div class="photo"></div>
+
+      <button class="arrow left" type="button" aria-label="Previous photo">&#10094;</button>
+      <button class="arrow right" type="button" aria-label="Next photo">&#10095;</button>
+
+      <div class="info">
+        <div class="colors">
+          <button class="color" type="button" style="background:#1C1C1C" data-card-color="#EDE6D6" aria-label="Black"></button>
+          <button class="color" type="button" style="background:#3d0409" data-card-color="#C9BFB0" aria-label="Light blue"></button>
+        </div>
+        <p class="name">Laro Unisex Drawstring Shorts</p>
+        <p class="price">₱250</p>
+      </div>
+    </div>
+
+    <div class="card" data-photos="Products-Images/Kids-Collection-Images/SRG.jpg, Products-Images/Kids-Collection-Images/SRY.jpg, Products-Images/Kids-Collection-Images/SRP.jpg">
+      <div class="photo"></div>
+
+      <button class="arrow left" type="button" aria-label="Previous photo">&#10094;</button>
+      <button class="arrow right" type="button" aria-label="Next photo">&#10095;</button>
+
+      <div class="info">
+        <div class="colors">
+          <button class="color" type="button" style="background:#6B7F4A" data-card-color="#EFE6D4" aria-label="Olive green"></button>
+          <button class="color" type="button" style="background:#E8B92E" data-card-color="#D9BFA0" aria-label="Mustard yellow"></button>
+          <button class="color" type="button" style="background:linear-gradient(135deg,#C9343F 50%,#F6E9EA 50%)" data-card-color="#F0DADD" aria-label="Red gingham"></button>
+        </div>
+        <p class="name">Sinag Romper (Infants/Toddlers)</p>
+        <p class="price">₱290</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+// Find all the cards on the page
+var cards = document.querySelectorAll(".card");
+
+// Do the same thing for every card
+cards.forEach(function (card) {
+
+  var photoBox = card.querySelector(".photo");
+  var photos = card.dataset.photos.split(",").map(function (p) {
+    return p.trim();
+  });
+  var leftArrow = card.querySelector(".left");
+  var rightArrow = card.querySelector(".right");
+  var colorButtons = card.querySelectorAll(".color");
+
+  // Which photo are we showing? 0 = the first one
+  var current = 0;
+
+  // Show the current photo, and highlight its color button
+  function showPhoto() {
+    photoBox.style.backgroundImage = 'url("' + photos[current] + '")';
+
+    colorButtons.forEach(function (button, index) {
+      var isActive = index === current;
+      button.classList.toggle("active", isActive);
+      if (isActive) {
+        card.style.background = button.dataset.cardColor;
+      }
+    });
+  }
+
+  // Right arrow: go to the next photo
+  rightArrow.onclick = function () {
+    current = current + 1;
+    if (current >= photos.length) {
+      current = 0;
+    }
+    showPhoto();
+  };
+
+  // Left arrow: go to the previous photo
+  leftArrow.onclick = function () {
+    current = current - 1;
+    if (current < 0) {
+      current = photos.length - 1;
+    }
+    showPhoto();
+  };
+
+  // Color buttons: the 1st button shows photo 1, the 2nd shows photo 2
+  colorButtons.forEach(function (button, index) {
+    button.onclick = function () {
+      current = index;
+      showPhoto();
+    };
+  });
+
+  showPhoto();
+});
+  </script>
+
+
+<!-- =====================================================================
+     KATHABI CART (added): Add to Cart, pop-up, cart bar, Proceed to Checkout.
+     Everything above is untouched. This block only adds to the page.
+     ===================================================================== -->
+<style>
+/* Room at the bottom so the cart bar never covers the cards */
+body { padding-bottom: 90px; }
+
+/* Each card + its Add to Cart button (made by the script below) */
+.kc-item { display: flex; flex-direction: column; gap: 8px; }
+
+.kc-add-btn {
+  background: #3A2418;
+  color: #F4EFE4;
+  border: none;
+  padding: 12px;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.kc-add-btn:hover { background: #522f1f; }
+.kc-add-btn:focus-visible,
+.kc-sheet button:focus-visible,
+.kc-proceed:focus-visible { outline: 3px solid #E8B896; outline-offset: 2px; }
+
+/* Pop-up */
+.kc-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(58, 36, 24, 0.55);
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.25s, visibility 0.25s;
+  z-index: 10;
+}
+.kc-backdrop.open { opacity: 1; visibility: visible; }
+
+.kc-sheet {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  max-width: 480px; margin: 0 auto;
+  background: #FBF8F1; color: #3A2418;
+  font-family: Arial, sans-serif;
+  border-radius: 16px 16px 0 0;
+  padding: 16px;
+  transform: translateY(100%); visibility: hidden;
+  transition: transform 0.3s ease, visibility 0.3s;
+  z-index: 11;
+}
+.kc-sheet.open { transform: translateY(0); visibility: visible; }
+
+.kc-close {
+  position: absolute; top: 8px; right: 12px;
+  background: none; border: none;
+  font-size: 28px; line-height: 1; color: #3A2418; cursor: pointer;
+}
+
+.kc-top {
+  display: flex; gap: 14px; align-items: flex-end;
+  padding-bottom: 14px; border-bottom: 1px solid #E5DCCB;
+}
+.kc-thumb {
+  width: 96px; height: 96px; border-radius: 6px;
+  background-color: #E8B896; background-size: cover; background-position: center;
+  margin-top: -36px; border: 3px solid #FBF8F1; flex-shrink: 0;
+}
+.kc-price { margin: 0; font-size: 24px; font-weight: bold; }
+.kc-name { margin: 2px 0 0; font-size: 14px; }
+
+.kc-label { margin: 16px 0 8px; font-size: 14px; }
+.kc-options { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.kc-chip {
+  display: flex; align-items: center; gap: 6px;
+  background: #FBF8F1; color: #3A2418;
+  border: 1px solid #CFC3AE; border-radius: 4px;
+  padding: 8px 12px; font-family: Arial, sans-serif; font-size: 14px; cursor: pointer;
+}
+.kc-chip.selected { border-color: #3A2418; background: #F3E3D3; font-weight: bold; }
+.kc-swatch {
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.kc-qty-row {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 18px; font-size: 14px;
+}
+.kc-qty { display: flex; align-items: center; border: 1px solid #CFC3AE; border-radius: 4px; }
+.kc-qty button {
+  width: 36px; height: 34px; background: none; border: none;
+  font-size: 20px; color: #3A2418; cursor: pointer;
+}
+.kc-qty button:disabled { color: #BDB19B; cursor: not-allowed; }
+.kc-qty span { min-width: 36px; text-align: center; font-weight: bold; }
+
+.kc-go {
+  width: 100%; margin-top: 20px; padding: 14px;
+  background: #3A2418; color: #F4EFE4;
+  border: none; border-radius: 4px;
+  font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; cursor: pointer;
+}
+.kc-go:hover { background: #522f1f; }
+
+/* Cart bar */
+.kc-bar {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 12px 16px;
+  background: #FBF8F1; color: #3A2418;
+  font-family: Arial, sans-serif;
+  border-top: 1px solid #E5DCCB;
+  transform: translateY(100%); visibility: hidden;
+  transition: transform 0.3s ease, visibility 0.3s;
+  z-index: 9;
+}
+.kc-bar.show { transform: translateY(0); visibility: visible; }
+.kc-bar-text { font-size: 13px; }
+.kc-bar-text strong { display: block; font-size: 18px; }
+.kc-proceed {
+  background: #3A2418; color: #F4EFE4;
+  text-decoration: none; border-radius: 4px;
+  padding: 12px 22px; font-size: 15px; font-weight: bold;
+}
+.kc-proceed:hover { background: #522f1f; }
+
+/* Message after adding */
+.kc-toast {
+  position: fixed; bottom: 90px; left: 50%;
+  transform: translate(-50%, 20px);
+  max-width: 90%;
+  background: #3A2418; color: #F4EFE4;
+  font-family: Arial, sans-serif;
+  padding: 12px 18px; border-radius: 6px; font-size: 14px;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+  z-index: 30;
+}
+.kc-toast.show { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .kc-backdrop, .kc-sheet, .kc-toast, .kc-bar { transition: none; }
+}
+
+@media (max-width: 700px) {
+  .kc-add-btn { padding: 10px 4px; font-size: 12px; }
+}
+</style>
+
+<div class="kc-backdrop" id="kcBackdrop"></div>
+
+<div class="kc-sheet" id="kcSheet" role="dialog" aria-modal="true" aria-labelledby="kcName">
+  <button class="kc-close" id="kcClose" type="button" aria-label="Close">&times;</button>
+
+  <div class="kc-top">
+    <div class="kc-thumb" id="kcThumb"></div>
+    <div>
+      <p class="kc-price" id="kcPrice"></p>
+      <p class="kc-name" id="kcName"></p>
+    </div>
+  </div>
+
+  <p class="kc-label">Color: <strong id="kcColorName"></strong></p>
+  <div class="kc-options" id="kcColors"></div>
+
+  <p class="kc-label">Size</p>
+  <div class="kc-options" id="kcSizes"></div>
+
+  <div class="kc-qty-row">
+    <span>Quantity</span>
+    <div class="kc-qty">
+      <button type="button" id="kcMinus" aria-label="Decrease quantity">&minus;</button>
+      <span id="kcQtyNumber">1</span>
+      <button type="button" id="kcPlus" aria-label="Increase quantity">+</button>
+    </div>
+  </div>
+
+  <button class="kc-go" id="kcGo" type="button"></button>
+</div>
+
+<div class="kc-bar" id="kcBar">
+  <div class="kc-bar-text">
+    <span id="kcCount"></span>
+    <strong id="kcSubtotal"></strong>
+  </div>
+  <a class="kc-proceed" id="kcProceed" href="mainComputationUI.html">Proceed to Checkout</a>
+</div>
+
+<div class="kc-toast" id="kcToast" role="status"></div>
+
+<script>
+(function () {
+
+  // ----- Settings for this page -----
+  var CART_KEY = "kathabiCart";               // same cart on every page
+  var CHECKOUT_URL = "mainComputationUI.html";
+  var SIZES = ["S", "M", "L", "XL"];          // same sizes as your order summary page uses for kids
+  var ONE_SIZE = [];                          // names of products that only come in "One size"
+
+  // Names shown in the pop-up. These come first, so they replace a card's aria-label
+  // where the label doesn't match the color circle. Key = the color in lowercase.
+  var COLOR_NAMES = {
+    "#3d0409": "Maroon"
+  };
+
+  // ----- Cart (saved in the browser) -----
+  var cart = [];
+
+  function loadCart() {
+    try {
+      var saved = JSON.parse(localStorage.getItem(CART_KEY));
+      if (Array.isArray(saved)) {
+        cart = saved;
+      }
+    } catch (error) {
+      cart = [];
+    }
+  }
+
+  function saveCart() {
+    try {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    } catch (error) {}
+  }
+
+  function formatPrice(number) {
+    return "₱" + number.toLocaleString("en-PH");
+  }
+
+  var bar = document.getElementById("kcBar");
+
+  function showBar() {
+    var count = 0;
+    var subtotal = 0;
+    cart.forEach(function (line) {
+      count = count + line.qty;
+      subtotal = subtotal + line.price * line.qty;
+    });
+    document.getElementById("kcCount").textContent = count + (count === 1 ? " item in cart" : " items in cart");
+    document.getElementById("kcSubtotal").textContent = "Subtotal " + formatPrice(subtotal);
+    bar.classList.toggle("show", count > 0);
+  }
+
+  // Same product + size + color just adds to the quantity
+  function addToCart(name, price, size, color, qty) {
+    var found = false;
+    cart.forEach(function (line) {
+      if (line.name === name && line.size === size && line.color === color) {
+        line.qty = line.qty + qty;
+        found = true;
+      }
+    });
+    if (found === false) {
+      cart.push({ name: name, price: price, size: size, color: color, qty: qty });
+    }
+    saveCart();
+    showBar();
+  }
+
+  // The color exactly as written on the card
+  function swatchValue(colorButton) {
+    var style = colorButton.getAttribute("style") || "";
+    return style.replace(/^\s*background\s*:\s*/i, "").replace(/;\s*$/, "").trim();
+  }
+
+  // The names above first, then the card's own aria-label, then "Color 1", "Color 2"...
+  function colorName(colorButton, index) {
+    return COLOR_NAMES[swatchValue(colorButton).toLowerCase()] ||
+      colorButton.getAttribute("aria-label") ||
+      ("Color " + (index + 1));
+  }
+
+  // Which color is showing on a card (the page marks it with the "active" class)
+  function currentIndex(card) {
+    var buttons = card.querySelectorAll(".color");
+    for (var i = 0; i < buttons.length; i++) {
+      if (buttons[i].classList.contains("active")) {
+        return i;
+      }
+    }
+    return 0;
+  }
+
+  loadCart();
+  showBar();
+
+  // ----- Pop-up -----
+  var sheet = document.getElementById("kcSheet");
+  var backdrop = document.getElementById("kcBackdrop");
+  var thumb = document.getElementById("kcThumb");
+  var priceEl = document.getElementById("kcPrice");
+  var nameEl = document.getElementById("kcName");
+  var colorNameEl = document.getElementById("kcColorName");
+  var colorsEl = document.getElementById("kcColors");
+  var sizesEl = document.getElementById("kcSizes");
+  var qtyNumber = document.getElementById("kcQtyNumber");
+  var minus = document.getElementById("kcMinus");
+  var plus = document.getElementById("kcPlus");
+  var go = document.getElementById("kcGo");
+  var toast = document.getElementById("kcToast");
+
+  var MAX_QTY = 10;
+  var openCard = null;
+  var openButton = null;
+  var sizeList = SIZES;
+  var chosenSize = "M";
+  var quantity = 1;
+  var unitPrice = 0;
+  var toastTimer = null;
+
+  function refreshSheet() {
+    var index = currentIndex(openCard);
+    var colorButtons = openCard.querySelectorAll(".color");
+
+    thumb.style.backgroundImage = openCard.querySelector(".photo").style.backgroundImage;
+    colorNameEl.textContent = colorName(colorButtons[index], index);
+
+    Array.prototype.forEach.call(colorsEl.children, function (chip, i) {
+      chip.classList.toggle("selected", i === index);
+      chip.setAttribute("aria-pressed", i === index);
+    });
+
+    Array.prototype.forEach.call(sizesEl.children, function (chip) {
+      var isSelected = chip.textContent === chosenSize;
+      chip.classList.toggle("selected", isSelected);
+      chip.setAttribute("aria-pressed", isSelected);
+    });
+
+    qtyNumber.textContent = quantity;
+    minus.disabled = quantity <= 1;
+    plus.disabled = quantity >= MAX_QTY;
+    go.textContent = "Add to Cart · " + formatPrice(unitPrice * quantity);
+  }
+
+  function openSheet(card, button) {
+    openCard = card;
+    openButton = button;
+    quantity = 1;
+
+    var priceText = card.querySelector(".price").textContent;
+    unitPrice = parseInt(priceText.replace(/[^0-9]/g, ""), 10);
+    priceEl.textContent = priceText;
+
+    var productName = card.querySelector(".name").textContent;
+    nameEl.textContent = productName;
+
+    // Some products only come in one size
+    sizeList = (ONE_SIZE.indexOf(productName) >= 0) ? ["One size"] : SIZES;
+    chosenSize = (sizeList.length > 1) ? sizeList[1] : sizeList[0];
+
+    // One chip for each color on the card
+    colorsEl.innerHTML = "";
+    card.querySelectorAll(".color").forEach(function (colorButton, i) {
+      var chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "kc-chip";
+
+      var dot = document.createElement("span");
+      dot.className = "kc-swatch";
+      dot.style.background = swatchValue(colorButton);
+
+      chip.appendChild(dot);
+      chip.appendChild(document.createTextNode(colorName(colorButton, i)));
+
+      chip.onclick = function () {
+        colorButton.click();   // uses the page's own color button, so the photo changes too
+        refreshSheet();
+      };
+      colorsEl.appendChild(chip);
+    });
+
+    // One chip for each size
+    sizesEl.innerHTML = "";
+    sizeList.forEach(function (size) {
+      var chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "kc-chip";
+      chip.textContent = size;
+      chip.onclick = function () {
+        chosenSize = size;
+        refreshSheet();
+      };
+      sizesEl.appendChild(chip);
+    });
+
+    refreshSheet();
+
+    backdrop.classList.add("open");
+    sheet.classList.add("open");
+    document.body.style.overflow = "hidden";
+    document.getElementById("kcClose").focus();
+  }
+
+  function closeSheet() {
+    backdrop.classList.remove("open");
+    sheet.classList.remove("open");
+    document.body.style.overflow = "";
+    if (openButton) {
+      openButton.focus();
+    }
+    openCard = null;
+  }
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      toast.classList.remove("show");
+    }, 3000);
+  }
+
+  // Put an Add to Cart button under every card
+  document.querySelectorAll(".card").forEach(function (card) {
+    var wrap = document.createElement("div");
+    wrap.className = "kc-item";
+
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "kc-add-btn";
+    button.textContent = "Add to Cart";
+    button.onclick = function () {
+      openSheet(card, button);
+    };
+
+    card.parentNode.insertBefore(wrap, card);
+    wrap.appendChild(card);
+    wrap.appendChild(button);
+  });
+
+  minus.onclick = function () {
+    if (quantity > 1) {
+      quantity = quantity - 1;
+      refreshSheet();
+    }
+  };
+  plus.onclick = function () {
+    if (quantity < MAX_QTY) {
+      quantity = quantity + 1;
+      refreshSheet();
+    }
+  };
+
+  document.getElementById("kcClose").onclick = closeSheet;
+  backdrop.onclick = closeSheet;
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && openCard) {
+      closeSheet();
+    }
+  });
+
+  // The big button in the pop-up: put the product in the cart
+  go.onclick = function () {
+    var index = currentIndex(openCard);
+    var colorButton = openCard.querySelectorAll(".color")[index];
+    var name = nameEl.textContent;
+    var color = colorName(colorButton, index);
+    var addedQty = quantity;
+    var addedSize = chosenSize;
+
+    addToCart(name, unitPrice, addedSize, swatchValue(colorButton), addedQty);
+
+    closeSheet();
+    showToast("Added to cart: " + addedQty + " × " + name + " (" + color + ", " + addedSize + ")");
+  };
+
+  document.getElementById("kcProceed").href = CHECKOUT_URL;
+})();
+</script>
+</body>
+</html>
